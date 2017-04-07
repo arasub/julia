@@ -13,7 +13,7 @@ embedding-debug: $(embedding_binary)
 
 $(embedding_binary): $(wildcard embedding/*)
 	@$(MAKE) $(QUIET_MAKE) -C $(BUILDROOT)/examples/embedding $(JULIA_BUILD_MODE) \
-                                JULIA="$(bindir)/julia$(JULIA_LIBSUFFIX)" BIN="$(libexecdir)" \
+                                JULIA="$(bindir)/julia$(JULIA_LIBSUFFIX)$(EXE)" BIN="$(libexecdir)" \
                                 SPAWN="$(spawn)" CC="$(CC)"
 
 clean:

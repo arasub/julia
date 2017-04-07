@@ -121,7 +121,7 @@ script:
             install -pm755 usr/lib/lib${name}*.dylib* /tmp/julia/lib/julia/;
         done;
       fi
-    - make -C examples
+    - make prefix=/tmp/julia -C examples
     - cd .. && mv julia julia2
     - /tmp/julia/bin/julia --precompiled=no -e 'true' &&
         /tmp/julia/bin/julia-debug --precompiled=no -e 'true'
