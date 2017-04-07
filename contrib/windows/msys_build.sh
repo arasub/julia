@@ -206,4 +206,4 @@ cat Make.user
 make -j3 VERBOSE=1
 make build-stats
 #make debug
-make -C usr/share/doc/julia/examples
+make -C examples
