@@ -74,9 +74,6 @@ $(build_prefix)/.examples: $(wildcard $(JULIAHOME)/examples/*.jl) \
 	@cp -R $(JULIAHOME)/examples/embedding $(build_docdir)/examples/embedding
 	@echo 1 > $@
 
-examples: julia-sysimg-$(JULIA_BUILD_MODE)
-	@$(MAKE) $(QUIET_MAKE) -C $(BUILDROOT)/examples $(JULIA_BUILD_MODE)
-
 julia-symlink: julia-ui-$(JULIA_BUILD_MODE)
 ifneq ($(OS),WINNT)
 ifndef JULIA_VAGRANT_BUILD
@@ -114,7 +111,7 @@ julia-sysimg-release : julia-inference julia-ui-release
 julia-sysimg-debug : julia-inference julia-ui-debug
 	@$(MAKE) $(QUIET_MAKE) -C $(BUILDROOT) $(build_private_libdir)/sys-debug$(CPUID_TAG).$(SHLIB_EXT) JULIA_BUILD_MODE=debug
 
-julia-debug julia-release : julia-% : julia-ui-% julia-sysimg-% julia-symlink julia-libccalltest examples
+julia-debug julia-release : julia-% : julia-ui-% julia-sysimg-% julia-symlink julia-libccalltest
 
 debug release : % : julia-%
 
@@ -347,7 +344,6 @@ ifeq ($(OS),WINNT)
 	-$(INSTALL_M) $(build_libdir)/libjulia.dll.a $(DESTDIR)$(libdir)/
 	-$(INSTALL_M) $(build_libdir)/libjulia-debug.dll.a $(DESTDIR)$(libdir)/
 	-$(INSTALL_M) $(build_bindir)/libopenlibm.dll.a $(DESTDIR)$(libdir)/
-	-$(INSTALL_M) $(build_libexecdir)/*.exe $(DESTDIR)$(libexecdir)/
 else
 	-cp -a $(build_libexecdir) $(DESTDIR)$(prefix)
 
