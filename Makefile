@@ -68,10 +68,10 @@ $(build_prefix)/.examples: $(wildcard $(JULIAHOME)/examples/*.jl) \
 	@echo Copying in usr/share/doc/julia/examples
 	@-rm -fr $(build_docdir)/examples
 	@mkdir -p $(build_docdir)/examples
-	@mkdir -p $(build_docdir)/examples/embedding
 	@cp -R $(JULIAHOME)/examples/*.jl $(build_docdir)/examples/
+	@cp -R $(JULIAHOME)/examples/Makefile $(build_docdir)/examples/
 	@cp -R $(JULIAHOME)/examples/clustermanager $(build_docdir)/examples/
-	@cp -R $(JULIAHOME)/examples/embedding $(build_docdir)/examples/embedding
+	@cp -R $(JULIAHOME)/examples/embedding $(build_docdir)/examples
 	@echo 1 > $@
 
 julia-symlink: julia-ui-$(JULIA_BUILD_MODE)
