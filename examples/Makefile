@@ -3,7 +3,7 @@ BUILDDIR := .
 JULIAHOME := $(abspath $(SRCDIR)/..)
 include $(JULIAHOME)/Make.inc
 
-embedding_binary := $(abspath $(build_libexecdir)/embedding$(JULIA_LIBSUFFIX)$(EXE))
+embedding_binary := $(abspath $(libexecdir)/embedding$(JULIA_LIBSUFFIX)$(EXE))
 
 release: embedding
 debug: embedding-debug
@@ -13,7 +13,7 @@ embedding-debug: $(embedding_binary)
 
 $(embedding_binary): $(wildcard embedding/*)
 	@$(MAKE) $(QUIET_MAKE) -C $(BUILDROOT)/examples/embedding $(JULIA_BUILD_MODE) \
-                                JULIA="$(JULIA_EXECUTABLE)" BIN="$(build_libexecdir)" \
+                                JULIA="$(bindir)/julia$(JULIA_LIBSUFFIX)" BIN="$(libexecdir)" \
                                 SPAWN="$(spawn)" CC="$(CC)"
 
 clean:
